@@ -1,0 +1,43 @@
+<?php
+class Calculadora {
+    private array $historial = [];
+
+    public function sumar(float $a, float $b): float {
+        $resultado = $a + $b;
+        $this->registrarOperacion($a, $b, '+', $resultado);
+        return $resultado;
+    }
+
+    public function restar(float $a, float $b): float {
+        $resultado = $a - $b;
+        $this->registrarOperacion($a, $b, '-', $resultado);
+        return $resultado;
+    }
+
+    public function multiplicar(float $a, float $b): float {
+        $resultado = $a * $b;
+        $this->registrarOperacion($a, $b, '*', $resultado);
+        return $resultado;
+    }
+
+    public function dividir(float $a, float $b): ?float {
+        if ($b === 0.0) {
+            $this->historial[] = "$a / $b = Error: División por cero";
+            return null;
+        }
+        $resultado = $a / $b;
+        $this->registrarOperacion($a, $b, '/', $resultado);
+        return $resultado;
+    }
+
+    public function mostrarHistorial(): void {
+        echo "Historial de operaciones:\n";
+        foreach ($this->historial as $operacion) {
+            echo $operacion . "\n";
+        }
+    }
+
+    private function registrarOperacion(float $a, float $b, string $operador, float $resultado): void {
+        $this->historial[] = "$a $operador $b = $resultado";
+    }
+}
