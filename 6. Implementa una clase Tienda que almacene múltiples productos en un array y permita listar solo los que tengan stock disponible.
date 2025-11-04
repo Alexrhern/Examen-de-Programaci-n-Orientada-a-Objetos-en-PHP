@@ -1,0 +1,28 @@
+<?php
+class Tienda {
+    private $productos = [];
+    public function agregarProducto($producto) {
+        $this->productos[] = $producto;
+    }
+    public function listarProductosConStock() {
+        echo "Productos con stock:\n";
+        foreach ($this->productos as $producto) {
+            if ($producto->stock > 0) {
+                $producto->mostrarDatos();
+            }
+        }
+    }
+}
+class Producto {
+    public $nombre;
+    public $precio;
+    public $stock;
+    public function __construct($nombre, $precio, $stock) {
+        $this->nombre = $nombre;
+        $this->precio = $precio;
+        $this->stock = $stock;
+    }
+    public function mostrarDatos() {
+        echo "Nombre: $this->nombre, Precio: $this->precio, Stock: $this->stock\n";
+    }
+}
