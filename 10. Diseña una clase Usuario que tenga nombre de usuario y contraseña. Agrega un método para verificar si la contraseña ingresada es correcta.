@@ -1,0 +1,20 @@
+<?php
+class Usuario {
+    private string $nombreUsuario;
+    private string $contrasenaHash;
+
+    public function __construct(string $nombreUsuario, string $contrasena) {
+        $this->nombreUsuario = $nombreUsuario;
+        $this->contrasenaHash = password_hash($contrasena, PASSWORD_DEFAULT);
+    }
+
+    public function verificarContrasena(string $contrasenaIngresada): bool {
+        $correcta = password_verify($contrasenaIngresada, $this->contrasenaHash);
+        echo $correcta ? "Contraseña correcta.\n" : "Contraseña incorrecta.\n";
+        return $correcta;
+    }
+
+    public function mostrarNombre(): void {
+        echo "Nombre de usuario: " . $this->nombreUsuario . "\n";
+    }
+}
