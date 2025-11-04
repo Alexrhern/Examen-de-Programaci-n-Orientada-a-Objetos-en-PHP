@@ -1,0 +1,18 @@
+<?php
+class Rectangulo {
+    private $base;
+    private $altura;
+    public function __construct($base, $altura) {
+        $this->base = $base;
+        $this->altura = $altura;
+    }
+    public function calcularArea() {
+        return $this->base * $this->altura;
+    }
+    public function esCuadrado() {
+        return $this->base === $this->altura;
+    }
+    public function mostrarDatos() {
+        echo "Base: $this->base, Altura: $this->altura, Área: " . $this->calcularArea() . ", Es cuadrado: " . ($this->esCuadrado() ? "Sí" : "No") . "\n";
+    }
+}
